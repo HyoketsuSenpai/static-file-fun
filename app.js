@@ -28,6 +28,11 @@ app.use(function(req, res, next){
     });
 });
 
+// 404 handler middleware
+app.use(function(req,res){
+    res.status(404).send("File not found");
+});
+
 app.listen(3000, function(){
     console.log(" App started on port 3000.\n http://localhost:3000");
 
