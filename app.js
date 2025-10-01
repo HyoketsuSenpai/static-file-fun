@@ -1,15 +1,17 @@
 const express = require('express');
+const morgan = require('morgan');
 const path = require('path');
 const fs = require('fs');
 
 var app = express();
 
 // simple logger middleware
-app.use(function(req, res, next){
-    console.log("Request IP: " + req.url);
-    console.log("Request date: " + new Date());
-    next();
-});
+// app.use(function(req, res, next){
+//     console.log("Request IP: " + req.url);
+//     console.log("Request date: " + new Date());
+//     next();
+// });
+app.use(morgan("short"));
 
 // simple middleware that servers the files in static
 app.use(function(req, res, next){
