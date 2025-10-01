@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const fs = require('fs');
+// const fs = require('fs');
 
 var app = express();
 
@@ -14,21 +14,23 @@ var app = express();
 app.use(morgan("short"));
 
 // simple middleware that servers the files in static
-app.use(function(req, res, next){
-    var filePath = path.join(__dirname, "static", req.url);
-    fs.stat(filePath,function(err, fileInfo){
-        if(err){
-            next();
-            return;
-        }
-        if(fileInfo.isFile()){
-            res.sendFile(filePath);
-        }
-        else {
-            next();
-        }
-    });
-});
+// app.use(function(req, res, next){
+//     var filePath = path.join(__dirname, "static", req.url);
+//     fs.stat(filePath,function(err, fileInfo){
+//         if(err){
+//             next();
+//             return;
+//         }
+//         if(fileInfo.isFile()){
+//             res.sendFile(filePath);
+//         }
+//         else {
+//             next();
+//         }
+//     });
+// });
+var staticPath = path.join(__dirname, "static");
+app.use(express.static(staticPath));
 
 // 404 handler middleware
 app.use(function(req,res){
